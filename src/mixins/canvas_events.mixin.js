@@ -26,7 +26,8 @@
       // in case we initialized the class twice. This should not happen normally
       // but in some kind of applications where the canvas element may be changed
       // this is a workaround to having double listeners.
-      this.removeListeners();
+      // Commented for preverting errors in Cohtml players
+      // this.removeListeners();
       this._bindEvents();
       this.addOrRemove(addListener, 'add');
     },

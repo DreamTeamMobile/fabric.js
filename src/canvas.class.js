@@ -1234,7 +1234,8 @@
      */
     dispose: function () {
       var wrapper = this.wrapperEl;
-      this.removeListeners();
+      // Commented for preventing errors in Cohtml player
+      // this.removeListeners();
       wrapper.removeChild(this.upperCanvasEl);
       wrapper.removeChild(this.lowerCanvasEl);
       this.contextCache = null;

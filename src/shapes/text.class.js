@@ -308,7 +308,7 @@
      * @type {Number}
      * @default
      */
-    MIN_TEXT_WIDTH: 2,
+    MIN_TEXT_WIDTH: 50,
 
     /**
      * Constructor
@@ -367,7 +367,7 @@
       }
       this._splitText();
       this._clearCache();
-      this.width = this.calcTextWidth() || this.cursorWidth || this.MIN_TEXT_WIDTH;
+      this.width = this.calcTextWidth() || this.width || this.cursorWidth || this.MIN_TEXT_WIDTH;
       if (this.textAlign.indexOf('justify') !== -1) {
         // once text is measured we need to make space fatter to make justified text.
         this.enlargeSpaces();
@@ -661,16 +661,19 @@
         this._setTextStyles(ctx, charStyle, true);
       }
       if (width === undefined) {
-        kernedWidth = width = ctx.measureText(_char).width;
+        // commented for compatibility with Cohtml player
+        // kernedWidth = width = ctx.measureText(_char).width;
         fontCache[_char] = width;
       }
       if (previousWidth === undefined && stylesAreEqual && previousChar) {
-        previousWidth = ctx.measureText(previousChar).width;
+        // commented for compatibility with Cohtml player
+        // previousWidth = ctx.measureText(previousChar).width;
         fontCache[previousChar] = previousWidth;
       }
       if (stylesAreEqual && coupleWidth === undefined) {
         // we can measure the kerning couple and subtract the width of the previous character
-        coupleWidth = ctx.measureText(couple).width;
+        // commented for compatibility with Cohtml player
+        // coupleWidth = ctx.measureText(couple).width;
         fontCache[couple] = coupleWidth;
         kernedWidth = coupleWidth - previousWidth;
       }

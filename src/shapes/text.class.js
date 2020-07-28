@@ -367,7 +367,7 @@
       }
       this._splitText();
       this._clearCache();
-      this.width = this.calcTextWidth() || this.cursorWidth || this.MIN_TEXT_WIDTH;
+      this.width = this.calcTextWidth() || this.width || this.cursorWidth || this.MIN_TEXT_WIDTH;
       if (this.textAlign.indexOf('justify') !== -1) {
         // once text is measured we need to make space fatter to make justified text.
         this.enlargeSpaces();

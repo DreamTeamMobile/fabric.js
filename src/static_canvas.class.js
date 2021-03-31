@@ -654,9 +654,10 @@
         this.upperCanvasEl.style[prop] = value;
       }
 
-      if (this.wrapperEl) {
-        this.wrapperEl.style[prop] = value;
-      }
+      // Removed wrapperEl
+      // if (this.wrapperEl) {
+      //   this.wrapperEl.style[prop] = value;
+      // }
 
       return this;
     },

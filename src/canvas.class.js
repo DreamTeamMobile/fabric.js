@@ -360,7 +360,10 @@
     _initInteractive: function() {
       this._currentTransform = null;
       this._groupSelector = null;
-      this._initWrapperElement();
+
+      // Removed wrapperEl 
+      // this._initWrapperElement();
+
       this._createUpperCanvas();
       this._initEventListeners();
 
@@ -993,7 +996,9 @@
       }
       fabric.util.addClass(upperCanvasEl, 'upper-canvas ' + lowerCanvasClass);
 
-      this.wrapperEl.appendChild(upperCanvasEl);
+      // Removed wrapperEl
+      // this.wrapperEl.appendChild(upperCanvasEl);
+      this.lowerCanvasEl.parentNode.appendChild(upperCanvasEl);
 
       this._copyCanvasStyle(lowerCanvasEl, upperCanvasEl);
       this._applyCanvasStyle(upperCanvasEl);
@@ -1013,17 +1018,19 @@
     /**
      * @private
      */
-    _initWrapperElement: function () {
-      this.wrapperEl = fabric.util.wrapElement(this.lowerCanvasEl, 'div', {
-        'class': this.containerClass
-      });
-      fabric.util.setStyle(this.wrapperEl, {
-        width: this.width + 'px',
-        height: this.height + 'px',
-        position: 'relative'
-      });
-      fabric.util.makeElementUnselectable(this.wrapperEl);
-    },
+
+    // Removed wrapperEl
+    // _initWrapperElement: function () {
+    //   this.wrapperEl = fabric.util.wrapElement(this.lowerCanvasEl, 'div', {
+    //     'class': this.containerClass
+    //   });
+    //   fabric.util.setStyle(this.wrapperEl, {
+    //     width: this.width + 'px',
+    //     height: this.height + 'px',
+    //     position: 'relative'
+    //   });
+    //   fabric.util.makeElementUnselectable(this.wrapperEl);
+    // },
 
     /**
      * @private
@@ -1233,21 +1240,27 @@
      * @chainable
      */
     dispose: function () {
-      var wrapper = this.wrapperEl;
+      // Removed wrapperEl
+      // var wrapper = this.wrapperEl;
+
       // Commented for preventing errors in Cohtml player
       // this.removeListeners();
-      wrapper.removeChild(this.upperCanvasEl);
-      wrapper.removeChild(this.lowerCanvasEl);
+
+      this.upperCanvasEl.parentNode.removeChild(this.upperCanvasEl);
+      this.lowerCanvasEl.parentNode.removeChild(this.lowerCanvasEl);
       this.contextCache = null;
       this.contextTop = null;
       ['upperCanvasEl', 'cacheCanvasEl'].forEach((function(element) {
         fabric.util.cleanUpJsdomNode(this[element]);
         this[element] = undefined;
       }).bind(this));
-      if (wrapper.parentNode) {
-        wrapper.parentNode.replaceChild(this.lowerCanvasEl, this.wrapperEl);
-      }
-      delete this.wrapperEl;
+      
+      // Removed wrapperEl
+      // if (wrapper.parentNode) {
+      //   wrapper.parentNode.replaceChild(this.lowerCanvasEl, this.wrapperEl);
+      // }
+      // delete this.wrapperEl;
+
       fabric.StaticCanvas.prototype.dispose.call(this);
       return this;
     },
